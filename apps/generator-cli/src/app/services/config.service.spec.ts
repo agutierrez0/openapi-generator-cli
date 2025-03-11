@@ -72,7 +72,7 @@ describe('ConfigService', () => {
           fixture.get('some-path');
           expect(fs.ensureFileSync).toHaveBeenNthCalledWith(
             1,
-            fixture.configFile
+            fixture.configFile,
           );
         });
 
@@ -86,7 +86,7 @@ describe('ConfigService', () => {
           expect(fs.readJSONSync).toHaveBeenNthCalledWith(
             1,
             fixture.configFile,
-            { throws: false, encoding: 'utf8' }
+            { throws: false, encoding: 'utf8' },
           );
         });
       });
@@ -128,7 +128,7 @@ describe('ConfigService', () => {
       it('ensures the config file', () => {
         expect(fs.ensureFileSync).toHaveBeenNthCalledWith(
           1,
-          fixture.configFile
+          fixture.configFile,
         );
       });
 
@@ -146,7 +146,7 @@ describe('ConfigService', () => {
           {
             encoding: 'utf8',
             spaces: 4,
-          }
+          },
         );
       });
     });
@@ -176,10 +176,11 @@ describe('ConfigService', () => {
       });
       describe('--openapitools not set', () => {
         it('returns default path, if openapitools argument not provided', () => {
+          console.log({ file: fixture.configFile });
           expect(
             fixture.configFile.endsWith(
-              'openapi-generator-cli/openapitools.json'
-            )
+              'openapi-generator-cli/openapitools.json',
+            ),
           ).toBeTruthy();
         });
       });
